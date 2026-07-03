@@ -66,7 +66,9 @@ variable "ip_configuration" {
   description = "my ip configuration"
   type = string
 
-  
+variable "size" {
+  description = "myvmsize"
+  type = string
 }
 
 
