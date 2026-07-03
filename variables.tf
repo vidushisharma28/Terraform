@@ -65,6 +65,7 @@ variable "public_ip_address" {
 variable "ip_configuration" {
   description = "my ip configuration"
   type = string
+}
 
 variable "vm_size" {
   description = "myvmsize"
