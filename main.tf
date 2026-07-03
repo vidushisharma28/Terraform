@@ -83,7 +83,7 @@
     name                = var.vm_name
     resource_group_name = var.resource_group_name
     location            = var.location
-    size    = "Standard_B2s"
+    size    = var.size
     admin_username = var.admin_username
 
     admin_ssh_key {
