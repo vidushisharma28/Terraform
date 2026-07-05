@@ -1,18 +1,22 @@
   resource "azurerm_virtual_network" "vnet" {
-    name                = var.vnet
+    for_each = var.instance
+    name                = ${var.vnet}-${each.key}
     address_space       = ["10.0.0.0/16"]
     resource_group_name = var.resource_group_name
     location            = var.location
   }
 
   resource "azurerm_subnet" "subnet" {
-    name                 = var.subnet
+    for_each = var.instance
+    name                = ${var.subnet}-${each.key}
     resource_group_name = var.resource_group_name
     virtual_network_name = azurerm_virtual_network.vnet.name
     address_prefixes     = ["10.0.2.0/24"]
   }
+
   resource "azurerm_network_security_group" "nsg" {
-  name                = var.nsg
+  for_each = var.instance
+  name                = ${var.nsg}-${each.key}
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -54,7 +58,8 @@
   
 
   resource "azurerm_public_ip" "mypublicip" {
-      name = var.public_ip_address
+      for_each = var.instance
+      name                = ${var.public_ip_address}-${each.key}
       resource_group_name = var.resource_group_name
       location            = var.location
       allocation_method   = "Static"
@@ -62,12 +67,14 @@
   }
 
   resource "azurerm_network_interface" "networkinterface" {
-    name                = var.networkinterface
+    for_each = var.instance
+    name                = ${var.networkinterface}-${each.key}
     resource_group_name = var.resource_group_name
     location            = var.location
 
     ip_configuration {
-      name                          = var.ip_configuration
+      for_each = var.instance
+      name                = ${var.ip_configuration}-${each.key}
       subnet_id                     = azurerm_subnet.subnet.id
       private_ip_address_allocation = "Dynamic"
       public_ip_address_id = azurerm_public_ip.mypublicip.id
@@ -80,10 +87,11 @@
 }
 
   resource "azurerm_linux_virtual_machine" "virtualmachine" {
-    name                = var.vm_name
+    for_each = var.instance # Loops over vm1, vm2, vm3
+    vm_name        = each.key
+    vm_size        = each.value.vm_size
     resource_group_name = var.resource_group_name
     location            = var.location
-    size    = var.vm_size
     admin_username = var.admin_username
 
     admin_ssh_key {
