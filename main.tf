@@ -81,8 +81,8 @@
   }
 
   resource "azurerm_network_interface_security_group_association" "nic_nsg" {
-  network_interface_id      = azurerm_network_interface.networkinterface[each.key].id
-  network_security_group_id = azurerm_network_security_group.nsg[each.key].id
+  network_interface_id      = azurerm_network_interface.networkinterface.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
   resource "azurerm_linux_virtual_machine" "virtualmachine" {
@@ -99,7 +99,7 @@
     }
     disable_password_authentication = true
     network_interface_ids = [
-      azurerm_network_interface.networkinterface.id,
+      azurerm_network_interface.networkinterface[each.key].id,
     ]
 
     os_disk {
