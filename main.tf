@@ -75,7 +75,7 @@
     ip_configuration {
       for_each = var.instance
       name                = "${var.ip_configuration}-${each.key}"
-      subnet_id                     = azurerm_subnet.subnet.id
+      subnet_id                     = azurerm_subnet.subnet[each.key].id
       private_ip_address_allocation = "Dynamic"
       public_ip_address_id = azurerm_public_ip.mypublicip.id
     }
