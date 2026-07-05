@@ -88,7 +88,7 @@
 
   resource "azurerm_linux_virtual_machine" "virtualmachine" {
     for_each = var.instance # Loops over vm1, vm2, vm3
-    vm_name        = each.key
+    name        = each.key
     vm_size        = each.value.vm_size
     resource_group_name = var.resource_group_name
     location            = var.location
