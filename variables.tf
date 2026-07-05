@@ -12,11 +12,12 @@ variable "public_key" {
 }
 
 
-variable "vm_name" {
-  type        = string
-  description = "Name of the VM"
+variable "instance" {
+description = "my instance"
+type = map(object({
+    vm_size = string
+  }))
 
-}
 
 variable "resource_group_name" {
   type        = string
@@ -67,9 +68,6 @@ variable "ip_configuration" {
   type = string
 }
 
-variable "vm_size" {
-  description = "myvmsize"
-  type = string
-}
+
 
 
