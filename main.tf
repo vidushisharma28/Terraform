@@ -81,8 +81,9 @@
   }
 
   resource "azurerm_network_interface_security_group_association" "nic_nsg" {
-  network_interface_id      = azurerm_network_interface.networkinterface.id
-  network_security_group_id = azurerm_network_security_group.nsg.id
+  for_each = var.instance
+  network_interface_id      = azurerm_network_interface.networkinterface[each.key].id
+  network_security_group_id = azurerm_network_security_group.nsg[each.key].id
 }
 
   resource "azurerm_linux_virtual_machine" "virtualmachine" {
