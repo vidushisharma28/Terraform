@@ -17,6 +17,7 @@ description = "my instance"
 type = map(object({
     vm_size = string
   }))
+}
 
 
 variable "resource_group_name" {
