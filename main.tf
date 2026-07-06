@@ -104,7 +104,7 @@ resource "azurerm_virtual_network" "vnet" {
 
     admin_ssh_key {
       username   = var.admin_username
-      public_key = file(var.public_key)
+      public_key = var.public_key
     }
     disable_password_authentication = true
     network_interface_ids = [
