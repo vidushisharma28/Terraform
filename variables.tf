@@ -1,6 +1,7 @@
 variable "admin_username" {
   description = "value of adminusername"
   type = string
+  default = "azureuser"
 
 }
 
@@ -26,16 +27,16 @@ variable "instance" {
 
 
 variable "resource_group_name" {
-  type        = string
-  description = "Resource group name"
-
-  
+description = "myrg"
+type = string
+default = "Resourcegroup2"
 }
 
-variable "location" {
-  type        = string
-  description = "Azure region"
 
+variable "location" {
+description = "location"
+type = string
+default = "EastUS"
 }
 
 variable "vnet" {
