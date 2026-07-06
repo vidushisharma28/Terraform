@@ -2,7 +2,7 @@ variable "admin_username" {
 description = "admin username"
 type = string
 default = "azureuser"  
-}
+} 
 
 variable "public_key" {
 description = "mypublickey"
@@ -70,3 +70,5 @@ description = "location"
 type = string
 default = "EastUS"
 }
+
+"Force update variables.tf"
