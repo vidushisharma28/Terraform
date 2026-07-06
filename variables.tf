@@ -71,4 +71,3 @@ type = string
 default = "EastUS"
 }
 
-"Force update variables.tf"
