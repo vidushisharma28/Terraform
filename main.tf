@@ -1,4 +1,11 @@
-  resource "azurerm_virtual_network" "vnet" {
+provider "azurerm" {
+  features {
+    
+  }
+
+}
+
+resource "azurerm_virtual_network" "vnet" {
     for_each = var.instance
     name                = "${var.vnet}-${each.key}"
     address_space       = ["10.0.0.0/16"]
