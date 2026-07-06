@@ -68,6 +68,6 @@ default = "myipconfig1"
 variable "location" {
 description = "location"
 type = string
-default = "EastUS"
+default = "centralus"
 }
 
