@@ -22,9 +22,9 @@ variable "instance" {
     vm_size = string
   }))
   default = {
-    "vm1" = { vm_size = "Standard_B1s" } # 🌟 Changed to 1 core
-    "vm2" = { vm_size = "Standard_B1s" } # 🌟 Changed to 1 core
-    "vm3" = { vm_size = "Standard_B1s" } # 🌟 Changed to 1 core
+    "vm1" = { vm_size = "DC1ds_v3" } # 🌟 Changed to 1 core
+    "vm2" = { vm_size = "DC1ds_v3" } # 🌟 Changed to 1 core
+    "vm3" = { vm_size = "DC1ds_v3" } # 🌟 Changed to 1 core
   }
 }
   
@@ -68,6 +68,6 @@ default = "myipconfig1"
 variable "location" {
 description = "location"
 type = string
-default = "centralus"
+default = "CentralIndia"
 }
 
