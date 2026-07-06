@@ -60,8 +60,12 @@ resource "azurerm_virtual_network" "vnet" {
   destination_address_prefix = "*"
 }*/
   }
-  
 
+  resource "azurerm_subnet_network_security_group_association" "nsg_assoc" {
+  subnet_id                 = azurerm_subnet.subnet.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
+}
+  
   resource "azurerm_public_ip" "mypublicip" {
       for_each = var.instance
       name                = "${var.public_ip_address}-${each.key}"
