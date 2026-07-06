@@ -7,24 +7,21 @@ resource_provider_registrations = "none"
 }
 
 resource "azurerm_virtual_network" "vnet" {
-    for_each = var.instance
-    name                = "${var.vnet}-${each.key}"
+    name                = var.vnet
     address_space       = ["10.0.0.0/16"]
     resource_group_name = var.resource_group_name
     location            = var.location
   }
 
   resource "azurerm_subnet" "subnet" {
-    for_each = var.instance
-    name                = "${var.subnet}-${each.key}"
+    name                = var.subnet
     resource_group_name = var.resource_group_name
     virtual_network_name = azurerm_virtual_network.vnet[each.key].name
     address_prefixes     = ["10.0.2.0/24"]
   }
 
   resource "azurerm_network_security_group" "nsg" {
-  for_each = var.instance
-  name                = "${var.nsg}-${each.key}"
+  name                = var.nsg
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -82,17 +79,12 @@ resource "azurerm_virtual_network" "vnet" {
 
     ip_configuration {
       name                = "${var.ip_configuration}-${each.key}"
-      subnet_id                     = azurerm_subnet.subnet[each.key].id
+      subnet_id                     = azurerm_subnet.subnet.id
       private_ip_address_allocation = "Dynamic"
       public_ip_address_id = azurerm_public_ip.mypublicip[each.key].id
     }
   }
 
-  resource "azurerm_network_interface_security_group_association" "nic_nsg" {
-  for_each = var.instance
-  network_interface_id      = azurerm_network_interface.networkinterface[each.key].id
-  network_security_group_id = azurerm_network_security_group.nsg[each.key].id
-}
 
   resource "azurerm_linux_virtual_machine" "virtualmachine" {
     for_each = var.instance # Loops over vm1, vm2, vm3
