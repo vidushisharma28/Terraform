@@ -1,10 +1,8 @@
 variable "admin_username" {
-  description = "value of adminusername"
-  type = string
-  default = "azureuser"
-
+description = "admin username"
+type = string
+default = "azureuser"  
 }
-
 
 variable "public_key" {
 description = "mypublickey"
@@ -12,6 +10,11 @@ type = string
 default = "mnt/workspace/id_rsa.pub"
 }
 
+variable "public_ip_address" {
+description = "mypublicipaddress"
+type = string
+default = "terraformpublicip"
+}
 
 variable "instance" {
   description = "my instance configurations"
@@ -24,7 +27,7 @@ variable "instance" {
     "vm3" = { vm_size = "Standard_B1s" } # 🌟 Changed to 1 core
   }
 }
-
+  
 
 variable "resource_group_name" {
 description = "myrg"
@@ -32,48 +35,38 @@ type = string
 default = "Resourcegroup2"
 }
 
+variable "vnet" {
+description = "myvnet"
+type = string
+default = "vnet1"
+}
+
+variable "subnet" {
+description = "mysubnet"
+type = string
+default = "subnet1"
+}
+
+variable "networkinterface" {
+description = "mynetworkinterface"
+type = string
+default = "networkinterface1"
+}
+
+variable "nsg" {
+description = "mynsg"
+type = string
+default = "nsg1"  
+}
+
+variable "ip_configuration" {
+description = "myipconfig"
+type = string
+default = "myipconfig1"
+}
 
 variable "location" {
 description = "location"
 type = string
 default = "EastUS"
 }
-
-variable "vnet" {
-  description = "my vnet"
-  type = string
-
-}
-
-variable "subnet" {
-  description = "my subnet"
-  type = string
-
-}
-
-variable "nsg" {
-  description = "my nsg"
-  type = string
-  
-}
-
-variable "networkinterface" {
-  description = "my NIC"
-  type = string
-
-}
-
-
-variable "public_ip_address" {
-  description = "my publicipaddress"
-  type = string
-
-}
-
-variable "ip_configuration" {
-  description = "my ip configuration"
-  type = string
-}
-
-
-
